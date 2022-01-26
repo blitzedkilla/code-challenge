@@ -13,3 +13,4 @@
 
 Route::get('/', "SearchController@index");
 Route::post('/search', "SearchController@search");
+Route::get('/detail/{entity}/{id}', "SearchController@detail");

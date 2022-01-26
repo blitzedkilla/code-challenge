@@ -9,7 +9,7 @@ class Spoty {
     public $client;
     public $client_id;
     public $client_secret;
-    public $base_url = '';
+
 
     public function __construct($c_id, $secret, $cl = null){
         $this->client = new Client();
@@ -36,7 +36,7 @@ class Spoty {
         }
     }
 
-    function search($query){
+    public function search($query){
 
         $params = [
             'query' => [
@@ -48,6 +48,18 @@ class Spoty {
             ]
          ];
         $response = $this->client->request('GET', 'https://api.spotify.com/v1/search', $params);
+        return json_decode($response->getBody());
+    }
+
+    public function get($entity, $id){
+
+        $params = [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->token,
+                'Content-Type' => 'application/json'
+            ]
+         ];
+        $response = $this->client->request('GET', 'https://api.spotify.com/v1/' . $entity . '/' . $id, $params);
         return json_decode($response->getBody());
     }
 }

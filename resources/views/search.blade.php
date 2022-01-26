@@ -30,7 +30,12 @@
         Artists: 
         <ul>
             @foreach ($artists as $artist)
-            <li>{{ $artist->name }}</li>
+            <li>
+                <a href="/detail/artists/{{ $artist->id }}"> {{ $artist->name }} </a>
+                @if(count($artist->images) > 0)
+                <img src="{{ $artist->images[0]->url }}" style="max-width: 10%;">
+                @endif
+            </li>
             @endforeach
         </ul>
     </div>
@@ -41,7 +46,12 @@
         Albums:
         <ul>
             @foreach ($albums as $album)
-            <li>{{ $album->name }}</li>
+            <li>
+                <a href="/detail/albums/{{ $album->id }}"> {{ $album->name }} </a>
+                @if(count($album->images) > 0)
+                <img src="{{ $album->images[0]->url }}" style="max-width: 10%;">
+                @endif
+            </li>
             @endforeach
         </ul>
     </div>
@@ -52,7 +62,8 @@
         Tracks:
         <ul>
             @foreach ($tracks as $track)
-            <li>{{ $track->name }}</li>
+            <li>
+                <a href="/detail/tracks/{{ $track->id }}"> {{ $track->name }} </a>
             @endforeach
         </ul>
     </div>

@@ -9,7 +9,6 @@ use App\Lib\Spoty;
 class SearchController extends Controller
 {
     
-
     public function index()
     {
         return view('index');
@@ -29,4 +28,16 @@ class SearchController extends Controller
             'tracks' => ($data->tracks->items),
         ]);
     }
+
+    public function detail($entity, $id)
+    {
+        $spoty = new Spoty('da71c8295e8a4ab1a40525e72dfffd5d', '54517e9fd12e41639122a3e39418c1ab');
+        $spoty->auth_spotify();
+        $data = $spoty->get($entity, $id);
+
+        return view('detail', [
+            'data' => ($data),
+            'entity' => (substr($entity,0,-1)),
+        ]);
+    }	
 }
