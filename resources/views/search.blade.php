@@ -24,9 +24,39 @@
 </head>
 <body>
 <div class="full-height">
-    <div class="result">
-        Your Search Term Was: <b>{{$searchTerm}}</b>
+
+    @if($artists)
+    <div class="artists">
+        Artists: 
+        <ul>
+            @foreach ($artists as $artist)
+            <li>{{ $artist->name }}</li>
+            @endforeach
+        </ul>
     </div>
+    @endif
+
+    @if($albums)
+    <div class="albums">
+        Albums:
+        <ul>
+            @foreach ($albums as $album)
+            <li>{{ $album->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    @if($tracks)
+    <div class="tracks">
+        Tracks:
+        <ul>
+            @foreach ($tracks as $track)
+            <li>{{ $track->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </div>
 </body>
 </html>
